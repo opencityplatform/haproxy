@@ -59,7 +59,7 @@
 #  Exporting the resource for a balancer member:
 #
 #  haproxy::listen { 'mysql-percona':
-#    ipaddress => 192.168.10.144,192.168.10.145,
+#    ipaddress => 192.168.100.14,192.168.100.15,192.168.100.16
 #    ports     => '18140',
 #    mode      => 'tcp',
 #    options   => {
@@ -77,7 +77,7 @@
 #
 define haproxy::listen (
   $ports                        = undef,
-  $ipaddress                    = undef, 
+  $ipaddress                    = undef,
   $bind                         = undef,
   $mode                         = undef,
   $collect_exported             = true,

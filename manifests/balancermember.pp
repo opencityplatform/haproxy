@@ -79,8 +79,8 @@
 #  haproxy::balancermember { 'haproxy':
 #    listening_service => 'mysql-percona',
 #    ports             => '8140',
-#    server_names      => ['server1', 'server2'],
-#    ipaddresses       => ['192.168.100.10', '192.168.100.11'],
+#    server_names      => ['server1', 'server2','server3'],
+#    ipaddresses       => ['192.168.1.4','192.168.1.5','192.168.1.6'],
 #    options           => 'check',
 #  }
 #
@@ -100,7 +100,7 @@ define haproxy::balancermember (
   # Template uses $ipaddresses, $server_name, $ports, $option
   concat::fragment { "${listening_service}_balancermember_${name}":
     ensure  => $ensure,
-    order   => "20-${listening_service}-01-${name}",
+    order   => "22-${listening_service}-01-${name}",
     target  => $::haproxy::config_file,
     content => template('haproxy/haproxy_balancermember.erb'),
   }
