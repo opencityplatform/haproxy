@@ -12,6 +12,10 @@ class haproxy::config inherits haproxy {
     line => 'net.ipv4.ip_nonlocal_bind=1',
     path => '/etc/sysctl.conf',
     match   => 'ip_nonlocal_bind',
+  }->
+  exec { 'sysctl':
+    command => 'sysctl -p',
+    path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin' ],
   }
 
   if $caller_module_name != $module_name {
