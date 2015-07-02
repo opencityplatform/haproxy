@@ -1,5 +1,19 @@
+include stdlib
+
 # Private class
 class haproxy::config inherits haproxy {
+
+  file { '/etc/sysctl.conf':
+    ensure  => file,
+    backup  => false,
+  }->
+  file_line { 'ip_nonlocal_bind':
+    ensure => present,
+    line => 'net.ipv4.ip_nonlocal_bind=1',
+    path => '/etc/sysctl.conf',
+    match   => 'ip_nonlocal_bind',
+  }
+
   if $caller_module_name != $module_name {
     fail("Use of private class ${name} by ${caller_module_name}")
   }

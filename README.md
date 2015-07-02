@@ -66,9 +66,14 @@ We developed this module starting the:
 
 ## Requirements
 
-Keeapalived ensure tthe HA proxy to work fine using a VIP.
+Keeapalived ensure the HA proxy to work fine using a VIP.
 
 * keepalived module
+
+To configure the bind in the VIP IP address you have to use stdlib so stdlib has been in puppet environments:
+
+* [stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)
+
 
 ## Tested on
 
@@ -89,11 +94,17 @@ You have to clone the git repo, and then copy the haproxy directory in the puppe
     $ git clone https://github.com/opencityplatform/ocp-cnaf-puppet.git
     $ cp -r haproxy /etc/puppet/environments/production/modules/
 
+### Install stdlib 
+If you have not installed and imported stdlib yet, rembemer to:
+
+* Install the module in puppet master host
+```puppet module install puppetlabs-stdlib```
+
 ### Import the module in foreman
 
 Inside foreman web application go to Configure -> Puppet classes
 Push the import button. (Import from <puppetmester host>
-Check the Add tips to haproxy line and click Import.
+Check the Add tips to haproxy and stdlib line and click Import.
 
 ### Configure the module with your parameters:
 
